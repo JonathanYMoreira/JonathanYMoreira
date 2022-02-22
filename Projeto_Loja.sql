@@ -33,19 +33,19 @@ CREATE TABLE vendas(
 );
 
 create table itensvenda(
-	quantidade int,
-	valorunitario numeric (10,2),
-	valortotal numeric (10,2),
-	desconto numeric (10,2),
-	idproduto int,
-	idvenda int,
+	quantidade INT,
+	valorunitario NUMERIC (10,2),
+	valortotal NUMERIC (10,2),
+	desconto NUMERIC (10,2),
+	idproduto INT,
+	idvenda INT,
 	
-	foreign key (idproduto) references produtos(idproduto),
-	foreign key (idvenda) references vendas(idvenda)
+	FOREIGN KEY (idproduto) REFERENCES produtos(idproduto),
+	FOREIGN KEY (idvenda) REFERENCES vendas(idvenda)
 	);	
 
 
-select COUNT(*) FROM vendas 
+SELECT COUNT(*) FROM vendas 
 LEFT JOIN vendedores ON (vendas.idvendedor = vendedores.idvendedor);
 
 SELECT COUNT(*) FROM vendas WHERE total >6000; 
