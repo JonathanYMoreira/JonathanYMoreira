@@ -51,21 +51,22 @@ CREATE PROCEDURE INSEREDADOS()
 BEGIN
         # DECLARANDO VARIAVEIS, UMA DECLARACAO PARA CADA TIPO DE VARIAVEL, INT - VARCHAR - ETC...
 	DECLARE FIM INT DEFAULT 0;    # DECLARACAO INICIAL DO LOOP
-	DECLARE VAR1, VAR2, VAR3, VTOTAL, VMEDIA INT;   # DECLARACAO DE INT
-	DECLARE VNOME VARCHAR(50);    #DECLARACAO DE VARCHAR
+	DECLARE VAR1, VAR2, VAR3, VTOTAL, VMEDIA INT;    # declaracao de int       - essa area vai mudar de acordo com o que e necessario fazer
+	DECLARE VNOME VARCHAR(50);   			 #declaracao de varchar	   - essa area vai mudar de acordo com o que e necessario fazer	
 
-	DECLARE REG CURSOR FOR(       # DECLARANDO A VARIAVEL DO CURSOR 
-		SELECT NOME, JAN, FEV, MAR FROM VENDEDORES    # ESSA QUERRY VAI ALIMENTAR A VARIAVEL 'REG' QUE E DO TIPO CURSOR 
+	DECLARE REG CURSOR FOR(       # declarando a variavel cursos   		   - essa area nao vai mudar, e padrao 
+	
+		SELECT NOME, JAN, FEV, MAR FROM VENDEDORES    # essa querry vai alimentar a variavel 'reg' que e do tipo cursor
 	);
 
-    	# QUANDO NAO TIVER MAIS INFORMACAO PARA ADICIONAR,PARA O LOOP
-    	# ESSE COMANDO SE REPETE EM QUALQUER CURSOR QUE FIZER
+    		/* QUANDO NAO TIVER MAIS INFORMACAO PARA ADICIONAR,PARA O LOOP
+    		   ESSE COMANDO SE REPETE EM QUALQUER CURSOR QUE FIZER */
   
-	DECLARE CONTINUE HANDLER FOR NOT FOUND SET FIM = 1;
+	DECLARE CONTINUE HANDLER FOR NOT FOUND SET FIM = 1;  /* quando nao tiver mais elemento no cursor, o loop para  - essa area nao vai mudar, e padrao 
 
-	    # JOGA O VETOR PARA A MEMORIA RAM PARA PODER ALTERAR ELE 
+	    
       
-	OPEN REG;
+	OPEN REG;  /* joga o vetor para a memoria ram para poder alterar ele */
 
 	REPEAT
 
