@@ -1,0 +1,59 @@
+Uso de Constraints
+
+** podendo ja ser declarado previamente dentro de uma tabela
+
+CREATE TABLE CURSOS(
+	IDCURSO INT PRIMARY KEY AUTO_INCREMENT,
+	NOME VARCHAR(30),
+	HORAS INT,
+	VALOR FLOAT(10,2),
+	ID_PREREQ INT               /* variavel da constraint */
+);
+
+ALTER TABLE CURSOS ADD CONSTRAINT FK_PREREQ
+FOREIGN KEY (ID_PREREQ) REFERENCES CURSOS(IDCURSO);
+
+
+** podendo ser declarada apos a criacao da tabela
+
+CREATE TABLE CURSOS(
+	IDCURSO INT PRIMARY KEY AUTO_INCREMENT,
+	NOME VARCHAR(30),
+	HORAS INT,
+	VALOR FLOAT(10,2),
+);
+
+ALTER TABLE CURSOS 
+ADD ID_PREREQ INT; 
+
+ALTER TABLE CURSOS ADD CONSTRAINT FK_PREREQ
+FOREIGN KEY (ID_PREREQ) REFERENCES CURSOS(IDCURSO);
+----------------------
+CREATE TABLE CLIENTE(
+	IDCLIENTE INT PRIMARY KEY AUTO_INCREMENT,
+	NOME VARCHAR(30) NOT NULL,
+	SEXO CHAR (1) NOT NULL,
+	EMAIL VARCHAR(40) UNIQUE,
+	CPF VARCHAR (15) UNIQUE
+);
+
+CREATE TABLE TELEFONE (
+	IDTELEFONE INT PRIMARY KEY AUTO_INCREMENT,
+	TIPO ENUM ('RES','COM','CEL') NOT NULL,
+	NUMERO VARCHAR (10) NOT NULL,
+);
+
+ALTER TABLE TELEFONE 
+ADD ID_CLIENTE INT;
+
+ALTER TABLE TELEFONE CONSTRAINT FK_CLIENTE_TELEFONE
+FOREIGN KEY (ID_CLIENTE) REFERENCES CLIENTE(IDCLIENTE);
+
+** Para uma boa prática de uso, pode se nomear a constraint com a sigla FK(foreign key/chave estrangeira) + nome da tabela principal + nome da tabela que 
+necessida dos dados 
+
+ex: para uma tabela de nome CLIENTE que possui como chave primaria IDCLIENTE e uma chamada TELEFONE que tem variavel para receber a chave estrangeira de 
+nome ID_CLIENTE.
+
+ALTER TABLE CURSOS ADD CONSTRAINT FK_cliente_telefone
+FOREIGN KEY (ID_CLIENTE) REFERENCES CLIENTE(IDCLIENTE);
